@@ -1,5 +1,5 @@
-const path = require("path");
-const webpack = require("webpack");
+const path = require('path');
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -71,7 +71,7 @@ module.exports = (env) => ({
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
-    ]
+    ],
   },
   // resolve: { extensions: ["*", ".js", ".jsx"] },
   resolve: {
@@ -115,17 +115,15 @@ module.exports = (env) => ({
 
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebPackPlugin(
-      {
-        inject: true,
-        templateContent:
-          `<html>
+    new HtmlWebPackPlugin({
+      inject: true,
+      templateContent: `<html>
 <body>
   <div id="root"></div>
   <script src="/dist/bundle.js"></script>
 </body>
-</html>`
-      }),
+</html>`,
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new CompressionPlugin({
       // asset: '[path].gz[query]', // error, Compression Plugin Invalid Options
@@ -139,7 +137,7 @@ module.exports = (env) => ({
       threshold: 10240,
       minRatio: 0.8,
     }),
-  ]
+  ],
 });
 
 // yarn add yarn add react react-dom

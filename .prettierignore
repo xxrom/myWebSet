@@ -1,0 +1,20 @@
+# Project
+node_modules/
+/Dockerfile
+.*
+!.babelrc
+*.log
+*.sh
+*.tsbuildinfo
+*.gz
+yarn.lock
+LICENSE
+
+
+packages/squire
+
+# Images
+*.svg
+*.jpg
+*.png
+*.cur
