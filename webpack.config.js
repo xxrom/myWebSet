@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const CompressionPlugin = require('compression-webpack-plugin');
-// const BrotliPlugin = require('brotli-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => ({
@@ -53,8 +51,6 @@ module.exports = (env) => ({
               limit: 10,
               name: '[name].[ext]',
               context: '',
-              // useRelativePath: true,
-              // name: 'images/[hash]-[name].[ext]',
             },
           },
         ],
@@ -76,7 +72,6 @@ module.exports = (env) => ({
       },
     ],
   },
-  // resolve: { extensions: ["*", ".js", ".jsx"] },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
@@ -96,14 +91,6 @@ module.exports = (env) => ({
     port: 3000,
     historyApiFallback: true,
   },
-
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: 'all',
-  //     minChunks: 2,
-  //   },
-  // },
-
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
@@ -116,34 +103,6 @@ module.exports = (env) => ({
 </html>`,
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin({
-      // filename: 'styles-[contenthash].css',
-      // chunkFilename: 'css-[id].css',
-    }),
-    // new CompressionPlugin({
-    //   // asset: '[path].gz[query]', // error, Compression Plugin Invalid Options
-    //   algorithm: 'gzip',
-    //   test: /\.(jsx|css|html|svg)$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8,
-    // }),
-    // new BrotliPlugin({
-    //   test: /\.(jsx|css|html|svg)$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8,
-    // }),
+    new MiniCssExtractPlugin(),
   ],
 });
-
-// yarn add yarn add react react-dom
-
-// yarn add --dev webpack webpack-cli webpack-dev-server babel-loader
-
-// https://babeljs.io/docs/en/babel-preset-env
-// yarn add  --dev @babel/preset-env babel-loader @babel/core
-
-// https://github.com/gaearon/react-hot-loader
-// yarn add --dev react-hot-loader @babel/preset-react react-dom@npm:@hot-loader/react-dom
-
-// https://webpack.js.org/plugins/html-webpack-plugin/
-// yarn add --dev html-webpack-plugin

@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <div>
-      <H1>Hello World! 223333</H1>
+      <H1>Hello World!</H1>
       <div>{count}</div>
       <button onClick={() => setCount(count + 1)}>add</button>
     </div>
@@ -15,7 +15,7 @@ const App = () => {
 };
 
 const H1 = styled.h1`
-  color: blue;
+  color: red;
 `;
 
 export default hot(App);
