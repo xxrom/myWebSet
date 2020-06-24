@@ -6,7 +6,7 @@ const App = () => {
 
   return <div>
     <h1>
-      Hello World! 2333
+      Hello World!
     </h1>
     <div>{count}</div>
     <button onClick={() => setCount(count + 1)}>add</button>

@@ -9,10 +9,10 @@
     "webpack:watch": "nodemon ./webpack.config.js --exec 'yarn build' --watch ./webpack.config.js --watch ./.babelrc.js"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "^16.13.1",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
-    "react-dom": "npm:@hot-loader/react-dom",
-    "@hot-loader/react-dom": "^16.13.1"
+    "react-dom": "npm:@hot-loader/react-dom"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
@@ -30,8 +30,8 @@
     "@babel/preset-stage-2": "^7.0.0",
     "babel-loader": "^8.1.0",
     "brotli-webpack-plugin": "^1.1.0",
-    "compression-webpack-plugin": "^2.0.0",
     "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^4.0.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "html-webpack-template": "^6.2.0",
