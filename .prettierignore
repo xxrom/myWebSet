@@ -9,6 +9,7 @@ node_modules/
 *.gz
 yarn.lock
 LICENSE
+.linaria-cache
 
 
 packages/squire

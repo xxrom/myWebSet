@@ -117,7 +117,8 @@ module.exports = (env) => ({
     }),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'styles-[contenthash].css',
+      // filename: 'styles-[contenthash].css',
+      // chunkFilename: 'css-[id].css',
     }),
     // new CompressionPlugin({
     //   // asset: '[path].gz[query]', // error, Compression Plugin Invalid Options
