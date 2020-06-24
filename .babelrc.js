@@ -8,7 +8,8 @@ module.exports = {
         }
       }
     ],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    "linaria/babel"
   ],
   "plugins": [
     [

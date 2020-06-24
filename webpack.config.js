@@ -2,10 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
+// const CompressionPlugin = require('compression-webpack-plugin');
+// const BrotliPlugin = require('brotli-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => ({
+  devtool: 'source-map',
   entry: path.resolve(__dirname, 'src/index.js'),
   mode: env.NODE_ENV === 'development' ? 'development' : 'production',
   module: {
@@ -13,32 +15,33 @@ module.exports = (env) => ({
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'linaria/loader',
+            options: {
+              sourceMap: process.env.NODE_ENV !== 'production',
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: [
-          'style-loader', // 3 этап - загружаем в реакт уже
-          'css-loader', // 2 этап - подгружаем css файл обычный
-          // {
-          //   // 1 этап - postcss плюшки
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     plugins: [
-          //       // require('postcss-import'),
-          //       // require('postcss-for'),
-          //       // require('postcss-simple-vars'),
-          //       // require('postcss-custom-properties'),
-          //       // require('postcss-nested'), // &__test { ... }
-          //       // require('postcss-color-function'),
-          //       // require('autoprefixer')({
-          //       //   browsers: ['last 2 versions', 'ie > 9'],
-          //       // }),
-          //     ],
-          //   },
-          // },
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV !== 'production',
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: process.env.NODE_ENV !== 'production',
+            },
+          },
         ],
       },
       {
@@ -87,31 +90,19 @@ module.exports = (env) => ({
     filename: '[name].[hash].js',
   },
 
-  // output: {
-  //   path: path.resolve(__dirname, "dist/"),
-
-  //   publicPath: "/dist/",
-  //   filename: "bundle.js"
-  // },
-  // devServer: {
-  //   contentBase: path.join(__dirname, "dist"),
-  //   port: 3000,
-  //   publicPath: "http://localhost:3000/dist/",
-  //   hotOnly: true,
-  //   compress: true,
-  // },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
     port: 3000,
+    historyApiFallback: true,
   },
 
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-      minChunks: 2,
-    },
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //     minChunks: 2,
+  //   },
+  // },
 
   plugins: [
     new CleanWebpackPlugin(),
@@ -125,18 +116,21 @@ module.exports = (env) => ({
 </html>`,
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new CompressionPlugin({
-      // asset: '[path].gz[query]', // error, Compression Plugin Invalid Options
-      algorithm: 'gzip',
-      test: /\.(jsx|css|html|svg)$/,
-      threshold: 10240,
-      minRatio: 0.8,
+    new MiniCssExtractPlugin({
+      filename: 'styles-[contenthash].css',
     }),
-    new BrotliPlugin({
-      test: /\.(jsx|css|html|svg)$/,
-      threshold: 10240,
-      minRatio: 0.8,
-    }),
+    // new CompressionPlugin({
+    //   // asset: '[path].gz[query]', // error, Compression Plugin Invalid Options
+    //   algorithm: 'gzip',
+    //   test: /\.(jsx|css|html|svg)$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8,
+    // }),
+    // new BrotliPlugin({
+    //   test: /\.(jsx|css|html|svg)$/,
+    //   threshold: 10240,
+    //   minRatio: 0.8,
+    // }),
   ],
 });
 
