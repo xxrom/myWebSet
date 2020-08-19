@@ -87,8 +87,9 @@ module.exports = (env) => ({
 
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
+    host: '0.0.0.0',
     hot: true,
-    port: 3000,
+    port: 3333,
     historyApiFallback: true,
   },
   plugins: [
