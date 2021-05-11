@@ -11,6 +11,7 @@ const App = () => {
     <div>
       <H1>Hello World!2</H1>
       <div>{count}</div>
+      <div>{count * 2} </div>
       <button onClick={() => setCount(count + 1)}>add</button>
       <Header />
     </div>
