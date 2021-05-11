@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { styled } from 'linaria/react';
 import { hot } from 'react-hot-loader/root';
 
+import { Header } from './blocks';
+
 const App = () => {
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <H1>Hello World!</H1>
+      <H1>Hello World!2</H1>
       <div>{count}</div>
       <button onClick={() => setCount(count + 1)}>add</button>
+      <Header />
     </div>
   );
 };
