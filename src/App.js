@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from 'linaria/react';
-import { hot } from 'react-hot-loader/root';
+//import { hot } from 'react-hot-loader/root';
 
 import { Header } from './blocks';
 
@@ -22,6 +22,11 @@ const H1 = styled.h1`
   color: red;
 `;
 
-import { setConfig } from 'react-hot-loader';
-setConfig({ logLevel: 'debug' });
-export default hot(App);
+//import { setConfig } from 'react-hot-loader';
+//setConfig({ logLevel: 'debug' });
+//export default hot(App);
+export default App;
+
+// issue: https://github.com/pmmmwh/react-refresh-webpack-plugin/blob/main/docs/TROUBLESHOOTING.md
+self.$RefreshReg$ = () => {};
+self.$RefreshSig$ = () => () => {};

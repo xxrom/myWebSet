@@ -12,12 +12,7 @@ module.exports = {
     "linaria/babel"
   ],
   "plugins": [
-    [
-      "react-hot-loader/babel",
-      {
-        "safetyNet": false
-      }
-    ],
+    "react-refresh/babel",
     [
       "@babel/plugin-proposal-decorators",
       {

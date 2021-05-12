@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isDevMode = process.env.NODE_ENV === 'development';
 
@@ -28,6 +29,7 @@ const plugins = [
 if (isDevMode) {
   // only enable hot in development
   plugins.push(new webpack.HotModuleReplacementPlugin());
+  plugins.push(new ReactRefreshWebpackPlugin());
 }
 
 module.exports = () => ({
@@ -42,6 +44,11 @@ module.exports = () => ({
         use: [
           {
             loader: 'babel-loader',
+            //options: {
+            //plugins: [
+            //isDevMode && require.resolve('react-refresh/babel'),
+            //].filter(Boolean),
+            //},
           },
           { loader: 'react-hot-loader/webpack' },
           {
