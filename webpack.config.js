@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
@@ -44,13 +44,12 @@ module.exports = () => ({
         use: [
           {
             loader: 'babel-loader',
-            //options: {
-            //plugins: [
-            //isDevMode && require.resolve('react-refresh/babel'),
-            //].filter(Boolean),
-            //},
+            options: {
+              plugins: [
+                isDevMode && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
           },
-          { loader: 'react-hot-loader/webpack' },
           {
             loader: 'linaria/loader',
             options: {
@@ -58,11 +57,6 @@ module.exports = () => ({
             },
           },
         ],
-      },
-      {
-        test: /\.jsx?$/,
-        include: /node_modules/,
-        use: ['react-hot-loader/webpack'],
       },
       {
         test: /\.css$/,
@@ -111,9 +105,6 @@ module.exports = () => ({
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
   },
 
   output: {

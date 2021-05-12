@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { styled } from 'linaria/react';
-//import { hot } from 'react-hot-loader/root';
+import React, {useState} from 'react';
+import {styled} from 'linaria/react';
 
-import { Header } from './blocks';
+import {Header} from './blocks';
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -22,9 +21,6 @@ const H1 = styled.h1`
   color: red;
 `;
 
-//import { setConfig } from 'react-hot-loader';
-//setConfig({ logLevel: 'debug' });
-//export default hot(App);
 export default App;
 
 // issue: https://github.com/pmmmwh/react-refresh-webpack-plugin/blob/main/docs/TROUBLESHOOTING.md
