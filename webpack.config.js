@@ -95,13 +95,16 @@ module.exports = (env) => ({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
+      favicon: './src/imgs/icon/favorit.ico',
       inject: true,
-      templateContent: `<html>
-<body>
-  <div id="root"></div>
-  <script src="/dist/bundle.js"></script>
-</body>
-</html>`,
+      templateContent: `
+<html>
+  <body style="margin: 0"'>
+    <div id="root"></div>
+    <script src="/dist/bundle.js"></script>
+  </body>
+</html>
+`,
     }),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin(),
