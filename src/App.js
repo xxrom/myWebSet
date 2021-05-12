@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {styled} from 'linaria/react';
+import React, { useState } from 'react';
+import { styled } from 'linaria/react';
 
-import {Header} from './blocks';
+import { Header } from './blocks';
 
 const App = () => {
   const [count, setCount] = useState(0);
