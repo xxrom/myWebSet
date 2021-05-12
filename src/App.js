@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { styled } from 'linaria/react';
-import { hot } from 'react-hot-loader/root';
+import React, {useState} from 'react';
+import {styled} from 'linaria/react';
+import {hot} from 'react-hot-loader/root';
 
-import { Header } from './blocks';
+import {Header} from './blocks';
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -22,4 +22,6 @@ const H1 = styled.h1`
   color: red;
 `;
 
+import {setConfig} from 'react-hot-loader';
+setConfig({logLevel: 'debug'});
 export default hot(App);
