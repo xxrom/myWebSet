@@ -12,7 +12,7 @@
     "lint-eslint": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx ./src --color --cache",
     "lint-prettier": "prettier -c '**/*'",
     "lint-stylelint": "stylelint **/*.{ts,tsx,js,jsx}",
-    "fix": "yarn run fix-prettier && yarn run fix-eslint && yarn run fix-stylelint",
+    "fix": "yarn run fix-prettier && yarn run fix-eslint && yarn run fix-stylelint && yarn lint",
     "fix-prettier": "prettier --write '**/*'",
     "fix-stylelint": "stylelint **/*.{ts,tsx,js,jsx} --fix",
     "fix-eslint": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx ./src --color --fix --cache"
