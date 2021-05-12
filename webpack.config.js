@@ -17,10 +17,6 @@ module.exports = (env) => ({
           {
             loader: 'babel-loader',
           },
-<<<<<<< HEAD
-=======
-          { loader: 'react-hot-loader/webpack' },
->>>>>>> 1d4e19e (feat: husky changed chmod a+x .husky/pre-commit)
           {
             loader: 'linaria/loader',
             options: {

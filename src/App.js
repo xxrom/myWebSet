@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {styled} from 'linaria/react';
-import {hot} from 'react-hot-loader/root';
+import React, { useState } from 'react';
+import { styled } from 'linaria/react';
+import { hot } from 'react-hot-loader/root';
 
-import {Header} from './blocks';
+import { Header } from './blocks';
 
 const App = () => {
   const [count, setCount] = useState(0);
