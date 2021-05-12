@@ -7,3 +7,5 @@ dist/
 */**/.linaria-cache/
 */**/*.linaria.css/
 */**/.eslintcache
+.linaria-cache/
+.eslintcache
