@@ -1,13 +1,41 @@
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-module.exports = (env) => ({
+const isDevMode = process.env.NODE_ENV === 'development';
+
+const plugins = [
+  new CleanWebpackPlugin(),
+  new HtmlWebPackPlugin({
+    inject: true,
+    templateContent: `<html>
+<body>
+  <div id="root"></div>
+  <script src="/dist/bundle.js"></script>
+</body>
+</html>`,
+  }),
+  new MiniCssExtractPlugin({
+    // Options similar to the same options in webpackOptions.output
+    // both options are optional
+    filename: isDevMode ? '[name].css' : '[name].[contenthash].css',
+    chunkFilename: isDevMode ? '[id].css' : '[id].[contenthash].css',
+  }),
+];
+
+if (isDevMode) {
+  // only enable hot in development
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+  plugins.push(new ReactRefreshWebpackPlugin());
+}
+
+module.exports = () => ({
   devtool: 'source-map',
   entry: path.resolve(__dirname, 'src/index.js'),
-  mode: env.NODE_ENV === 'development' ? 'development' : 'production',
+  mode: isDevMode ? 'development' : 'production',
   module: {
     rules: [
       {
@@ -16,11 +44,16 @@ module.exports = (env) => ({
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              plugins: [
+                isDevMode && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
           },
           {
             loader: 'linaria/loader',
             options: {
-              sourceMap: process.env.NODE_ENV !== 'production',
+              sourceMap: isDevMode,
             },
           },
         ],
@@ -30,14 +63,12 @@ module.exports = (env) => ({
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV !== 'production',
-            },
+            options: {},
           },
           {
             loader: 'css-loader',
             options: {
-              sourceMap: process.env.NODE_ENV !== 'production',
+              sourceMap: isDevMode,
             },
           },
         ],
@@ -74,15 +105,12 @@ module.exports = (env) => ({
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
   },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
     chunkFilename: '[name].bundle.js',
-    filename: '[name].[hash].js',
+    filename: '[name].[contenthash].js',
   },
 
   devServer: {
@@ -92,18 +120,6 @@ module.exports = (env) => ({
     port: 3333,
     historyApiFallback: true,
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebPackPlugin({
-      inject: true,
-      templateContent: `<html>
-<body>
-  <div id="root"></div>
-  <script src="/dist/bundle.js"></script>
-</body>
-</html>`,
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new MiniCssExtractPlugin(),
-  ],
+
+  plugins,
 });

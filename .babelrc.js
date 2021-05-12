@@ -8,16 +8,13 @@ module.exports = {
         }
       }
     ],
-    "@babel/preset-react",
+    ["@babel/preset-react", {
+      "runtime": "automatic"
+    }],
     "linaria/babel"
   ],
   "plugins": [
-    [
-      "react-hot-loader/babel",
-      {
-        "safetyNet": false
-      }
-    ],
+    "react-refresh/babel",
     [
       "@babel/plugin-proposal-decorators",
       {
