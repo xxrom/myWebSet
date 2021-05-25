@@ -14,7 +14,7 @@ const plugins = [
     templateContent: `<html>
 <body>
   <div id="root"></div>
-  <script src="/dist/bundle.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>`,
   }),
@@ -29,12 +29,18 @@ const plugins = [
 if (isDevMode) {
   // only enable hot in development
   plugins.push(new webpack.HotModuleReplacementPlugin());
-  plugins.push(new ReactRefreshWebpackPlugin());
+  plugins.push(
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockIntegration: 'whm',
+      },
+    }),
+  );
 }
 
 module.exports = () => ({
   devtool: 'source-map',
-  entry: path.resolve(__dirname, 'src/index.js'),
+  //entry: path.resolve(__dirname, 'src/index.js'),
   mode: isDevMode ? 'development' : 'production',
   module: {
     rules: [
@@ -108,9 +114,9 @@ module.exports = () => ({
   },
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    //path: path.resolve(__dirname, 'dist'),
     chunkFilename: '[name].bundle.js',
-    filename: '[name].[contenthash].js',
+    //filename: '[name].[contenthash].js',
   },
 
   devServer: {
@@ -119,6 +125,10 @@ module.exports = () => ({
     hot: true,
     port: 3333,
     historyApiFallback: true,
+  },
+
+  optimization: {
+    runtimeChunk: 'single',
   },
 
   plugins,
