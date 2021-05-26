@@ -1,7 +1,7 @@
-import React, { useState, useCallback, memo } from 'react';
-import { styled } from 'linaria/react';
+import React, {useState, useCallback, memo} from 'react';
+import {styled} from 'linaria/react';
 
-import { mainImageWebp, mainImageJpg, github, gitlab, gmail } from './imgs';
+import {mainImageWebp, mainImageJpg, github, gitlab, gmail} from './imgs';
 
 export const Header = memo(() => {
   const [mainImage, setMainImage] = useState(mainImageWebp);

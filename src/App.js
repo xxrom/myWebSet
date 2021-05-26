@@ -1,8 +1,7 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
-import { Helmet } from 'react-helmet';
+import {Helmet} from 'react-helmet';
 
-import { Header } from './blocks';
+import {Header} from './blocks';
 
 const App = () => (
   <div>
@@ -22,4 +21,5 @@ const App = () => (
   </div>
 );
 
-export default hot(App);
+export default App;
+
