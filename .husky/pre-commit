@@ -1,1 +1,1 @@
-yarn fix && yarn lint
+yarn fix && git add . && yarn lint

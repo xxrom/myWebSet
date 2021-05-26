@@ -1,7 +1,7 @@
 import React from 'react';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
-import {Header} from './blocks';
+import { Header } from './blocks';
 
 const App = () => (
   <div>
@@ -22,4 +22,3 @@ const App = () => (
 );
 
 export default App;
-
